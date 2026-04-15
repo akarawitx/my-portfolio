@@ -212,9 +212,17 @@
 @media (max-width: 860px) {
   .hero-inner {
     flex-direction: column;
+    align-items: center;
     gap: 24px;
     text-align: center;
     padding-top: 20px;
+  }
+
+  .avatar-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
   .bubble-wrap {
@@ -235,10 +243,13 @@
   .avatar-fallback {
     width: 200px;
     margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-tagline {
     padding: 0 8px;
+    width: 100%;
   }
 }
 
