@@ -34,6 +34,7 @@ const skills = [
 ]
 
 const skills2 = [
+  { name: 'Php', icon: 'https://img.icons8.com/color/48/php' },
   { name: 'React', icon: 'https://img.icons8.com/color/48/react-native' },
   { name: 'Vue', icon: 'https://img.icons8.com/color/48/vue-js' },
   { name: 'Vite', icon: 'https://img.icons8.com/color/48/vite' },
@@ -45,7 +46,8 @@ const skills2 = [
 <style scoped>
 .skills {
   text-align: center;
-  padding: 80px 0;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 .skills-inner {

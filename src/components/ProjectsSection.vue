@@ -1,4 +1,4 @@
-<!-- src/components/ProjectsSection.vue -->
+<!-- src/components/t.vue -->
 <template>
   <section class="projects" id="projects">
     <div class="container">
@@ -40,7 +40,26 @@
 </template>
 
 <script setup>
-const projects = [
+import { computed } from 'vue'
+
+const props = defineProps({
+  preview: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const allProjects = [
+  {
+    title: 'Example Project',
+    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
+    cardText: 'This headline reflects my personality (16px)  |  WHO AM I',
+  },
+  {
+    title: 'Example Project',
+    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
+    cardText: 'OPPORTUNITY (41px)',
+  },
   {
     title: 'Example Project',
     desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
@@ -52,11 +71,13 @@ const projects = [
     cardText: 'OPPORTUNITY (41px)',
   },
 ]
+
+const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allProjects)
 </script>
 
 <style scoped>
 .projects {
-  padding: 80px 0;
+  padding: 10px 0;
 }
 
 .project-row {

@@ -13,7 +13,7 @@
           currently seeking opportunities to grow as a Web Developer while continuously
           improving my skills.
         </p>
-        <a href="/resume.pdf" download class="resume-btn">
+        <a href="/src//assets//Akarawit-Resume.pdf" download class="resume-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -30,6 +30,7 @@
 <style scoped>
 .about {
   padding: 88px 0 48px;
+  scroll-margin-top: 120px;
 }
 
 .about-content {

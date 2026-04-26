@@ -1,24 +1,11 @@
 <!-- src/App.vue -->
 <template>
   <div id="app">
-    <NavBar />
-    <main>
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
-    </main>
+    <RouterView />
   </div>
 </template>
 
 <script setup>
-import NavBar from './components/NavBar.vue'
-import HeroSection from './components/HeroSection.vue'
-import AboutSection from './components/AboutSection.vue'
-import SkillsSection from './components/SkillsSection.vue'
-import ProjectsSection from './components/ProjectsSection.vue'
-import ContactSection from './components/ContactSection.vue'
 </script>
 
 <style>
@@ -44,9 +31,7 @@ import ContactSection from './components/ContactSection.vue'
   --font-body:    'DM Sans', sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--bg-deep);
@@ -62,23 +47,15 @@ a {
   text-decoration: none;
   transition: opacity 0.2s;
 }
+a:hover { opacity: 0.8; }
 
-a:hover {
-  opacity: 0.8;
-}
-
-::selection {
-  background: var(--accent-soft);
-  color: #fff;
-}
+::selection { background: var(--accent-soft); color: #fff; }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: var(--accent-soft); border-radius: 3px; }
 
-section {
-  padding: 96px 0;
-}
+section { padding: 96px 0; }
 
 .container {
   max-width: 1100px;
@@ -95,28 +72,7 @@ section {
   color: var(--text-primary);
 }
 
-/* ─── Global Responsive ─── */
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 32px;
-  }
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 72px 0;
-  }
-  .container {
-    padding: 0 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  section {
-    padding: 56px 0;
-  }
-  .container {
-    padding: 0 16px;
-  }
-}
+@media (max-width: 1024px) { .container { padding: 0 32px; } }
+@media (max-width: 768px)  { section { padding: 72px 0; } .container { padding: 0 20px; } }
+@media (max-width: 480px)  { section { padding: 56px 0; } .container { padding: 0 16px; } }
 </style>
