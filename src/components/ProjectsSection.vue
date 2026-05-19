@@ -1,20 +1,29 @@
-<!-- src/components/t.vue -->
+<!-- src/components/ProjectsSection.vue -->
 <template>
   <section class="projects" id="projects">
     <div class="container">
-      <div
-        v-for="(project, i) in projects"
-        :key="i"
-        class="project-row"
-        :class="{ reverse: i % 2 !== 0 }"
-      >
+      <div v-for="(project, i) in projects" :key="i" class="project-row" :class="{ reverse: i % 2 !== 0 }">
         <div class="project-text">
           <span class="featured-label">Featured Project</span>
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.desc }}</p>
           <div class="project-links">
-            <a href="#" class="proj-link" title="GitHub">⭐</a>
-            <a href="#" class="proj-link" title="Live">🔗</a>
+            <a v-if="project.github && project.github !== '#'" :href="project.github" target="_blank" class="proj-link"
+              title="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
+            <a v-if="project.live && project.live !== '#'" :href="project.live" target="_blank" class="proj-link"
+              title="Live">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </a>
           </div>
         </div>
 
@@ -23,7 +32,9 @@
             <div class="preview-dots">
               <span></span><span></span><span></span>
             </div>
-            <div class="preview-lines">
+            <img v-if="project.image" :src="project.image" :alt="project.title" class="preview-img"
+              @click="openModal(project.images, 0)" />
+            <div v-else class="preview-lines">
               <div class="p-line wide"></div>
               <div class="p-line medium"></div>
               <div class="p-line wide"></div>
@@ -37,38 +48,232 @@
       </div>
     </div>
   </section>
+  <!-- Image Modal -->
+  <Teleport to="body">
+    <div v-if="modalOpen" class="img-modal-overlay" @click.self="closeModal">
+      <div class="img-modal-box">
+
+        <button class="img-modal-close" @click="closeModal">✕</button>
+
+        <div v-if="modalImages.length > 1" class="img-modal-counter">
+          {{ modalIndex + 1 }} / {{ modalImages.length }}
+        </div>
+
+        <button v-if="modalImages.length > 1" class="img-modal-nav img-modal-nav--prev" @click="prevImage">‹</button>
+
+        <div class="img-modal-viewport" @wheel.prevent="onWheel" @mousedown="onMouseDown" @mousemove="onMouseMove"
+          @mouseup="onMouseUp" @mouseleave="onMouseUp" @touchstart.prevent="onTouchStart"
+          @touchmove.prevent="onTouchMove" @touchend="onTouchEnd">
+          <img :src="modalSrc" :alt="modalAlt" class="img-modal-img" :style="{
+            transform: `scale(${zoom}) translate(${panX / zoom}px, ${panY / zoom}px)`,
+            cursor: isDragging ? 'grabbing' : 'grab'
+          }" draggable="false" />
+        </div>
+
+        <button v-if="modalImages.length > 1" class="img-modal-nav img-modal-nav--next" @click="nextImage">›</button>
+
+        <div v-if="modalImages.length > 1" class="img-modal-thumbs">
+          <img v-for="(img, i) in modalImages" :key="i" :src="img.src" :alt="img.alt" class="img-modal-thumb"
+            :class="{ active: i === modalIndex }" @click="() => { modalIndex = i; resetZoom() }" />
+        </div>
+
+        <div class="img-modal-controls">
+          <button @click="zoomOut">－</button>
+          <span>{{ Math.round(zoom * 100) }}%</span>
+          <button @click="zoomIn">＋</button>
+          <button @click="resetZoom">Reset</button>
+        </div>
+
+      </div>
+    </div>
+  </Teleport>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps({
-  preview: {
-    type: Boolean,
-    default: false
-  }
+  preview: { type: Boolean, default: false }
 })
 
+// ── Modal state ──────────────────────────────────────────
+const modalOpen = ref(false)
+const modalImages = ref([])
+const modalIndex = ref(0)
+const modalSrc = computed(() => modalImages.value[modalIndex.value]?.src ?? '')
+const modalAlt = computed(() => modalImages.value[modalIndex.value]?.alt ?? '')
+const zoom = ref(1)
+const panX = ref(0)
+const panY = ref(0)
+
+// drag
+const isDragging = ref(false)
+const dragStart = ref({ x: 0, y: 0 })
+
+// pinch
+const lastDist = ref(null)
+
+function openModal(images, startIndex = 0) {
+  modalImages.value = images
+  modalIndex.value = startIndex
+  modalOpen.value = true
+  resetZoom()
+  document.body.style.overflow = 'hidden'
+}
+
+function closeModal() {
+  modalOpen.value = false
+  document.body.style.overflow = ''
+}
+
+function prevImage() {
+  modalIndex.value = (modalIndex.value - 1 + modalImages.value.length) % modalImages.value.length
+  resetZoom()
+}
+
+function nextImage() {
+  modalIndex.value = (modalIndex.value + 1) % modalImages.value.length
+  resetZoom()
+}
+
+function resetZoom() {
+  zoom.value = 1
+  panX.value = 0
+  panY.value = 0
+}
+
+function clampZoom(val) {
+  return Math.min(Math.max(val, 0.5), 5)
+}
+
+function zoomIn() { zoom.value = clampZoom(zoom.value + 0.25) }
+function zoomOut() { zoom.value = clampZoom(zoom.value - 0.25) }
+
+// ── Mouse wheel zoom ─────────────────────────────────────
+function onWheel(e) {
+  const delta = e.deltaY > 0 ? -0.15 : 0.15
+  zoom.value = clampZoom(zoom.value + delta)
+}
+
+// ── Mouse drag pan ───────────────────────────────────────
+function onMouseDown(e) {
+  isDragging.value = true
+  dragStart.value = { x: e.clientX - panX.value, y: e.clientY - panY.value }
+}
+
+function onMouseMove(e) {
+  if (!isDragging.value) return
+  panX.value = e.clientX - dragStart.value.x
+  panY.value = e.clientY - dragStart.value.y
+}
+
+function onMouseUp() { isDragging.value = false }
+
+// ── Touch pinch-zoom + drag ───────────────────────────────
+function getTouchDist(touches) {
+  const dx = touches[0].clientX - touches[1].clientX
+  const dy = touches[0].clientY - touches[1].clientY
+  return Math.hypot(dx, dy)
+}
+
+function onTouchStart(e) {
+  if (e.touches.length === 2) {
+    lastDist.value = getTouchDist(e.touches)
+  } else if (e.touches.length === 1) {
+    isDragging.value = true
+    dragStart.value = {
+      x: e.touches[0].clientX - panX.value,
+      y: e.touches[0].clientY - panY.value
+    }
+  }
+}
+
+function onTouchMove(e) {
+  if (e.touches.length === 2 && lastDist.value !== null) {
+    const dist = getTouchDist(e.touches)
+    const delta = (dist - lastDist.value) * 0.01
+    zoom.value = clampZoom(zoom.value + delta)
+    lastDist.value = dist
+  } else if (e.touches.length === 1 && isDragging.value) {
+    panX.value = e.touches[0].clientX - dragStart.value.x
+    panY.value = e.touches[0].clientY - dragStart.value.y
+  }
+}
+
+function onTouchEnd() {
+  isDragging.value = false
+  lastDist.value = null
+}
+
+// ── Projects data ────────────────────────────────────────
 const allProjects = [
   {
-    title: 'Example Project',
-    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
-    cardText: 'This headline reflects my personality (16px)  |  WHO AM I',
+    title: 'CoOpSystem',
+    desc: 'ระบบจัดการสหกิจศึกษาสำหรับบริหารโครงการฝึกงานระหว่างนักศึกษา อาจารย์ สถานประกอบการ และผู้ดูแลระบบ จัดทำเป็น Senior Project สำหรับภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร ระบบใช้ RBAC รองรับ 6 บทบาท ทั้ง Student, Teacher, Supervisor, Company, Personnel และ Admin',
+    cardText: 'Vue 3 · Go (Gin) · PostgreSQL · Docker · Vercel · Google Cloud',
+    github: 'https://github.com/aceticacid09/CoOpSystem',
+    live: 'https://co-op-system.vercel.app/',
+    image: new URL('../assets/project/seniorProject/homepage.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/seniorProject/homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
+      { src: new URL('../assets/project/seniorProject/news.png', import.meta.url).href, alt: 'หน้าข่าวสารเเละกิจกรรม' },
+      { src: new URL('../assets/project/seniorProject/document.png', import.meta.url).href, alt: 'หน้าเอกสาร' },
+      { src: new URL('../assets/project/seniorProject/jobs.png', import.meta.url).href, alt: 'หน้าค้นหางาน' },
+      { src: new URL('../assets/project/seniorProject/student1.png', import.meta.url).href, alt: 'ส่วนของนักศึกษา' },
+      { src: new URL('../assets/project/seniorProject/student2.png', import.meta.url).href, alt: 'ส่วนของนักศึกษา' },
+      { src: new URL('../assets/project/seniorProject/student3.png', import.meta.url).href, alt: 'ส่วนของนักศึกษา' },
+      { src: new URL('../assets/project/seniorProject/student4.png', import.meta.url).href, alt: 'ส่วนของนักศึกษา' },
+      { src: new URL('../assets/project/seniorProject/company1.png', import.meta.url).href, alt: 'ส่วนของสถานประกอบการ' },
+      { src: new URL('../assets/project/seniorProject/company2.png', import.meta.url).href, alt: 'ส่วนของสถานประกอบการ' },
+      { src: new URL('../assets/project/seniorProject/company3.png', import.meta.url).href, alt: 'ส่วนของสถานประกอบการ' },
+      { src: new URL('../assets/project/seniorProject/company4.png', import.meta.url).href, alt: 'ส่วนของสถานประกอบการ' },
+      { src: new URL('../assets/project/seniorProject/teacher1.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+      { src: new URL('../assets/project/seniorProject/teacher2.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+      { src: new URL('../assets/project/seniorProject/teacher3.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+      { src: new URL('../assets/project/seniorProject/teacher4.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+      { src: new URL('../assets/project/seniorProject/teacher5.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+      { src: new URL('../assets/project/seniorProject/teacher6.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
+    ],
   },
   {
-    title: 'Example Project',
-    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
-    cardText: 'OPPORTUNITY (41px)',
+    title: 'FD-net Callcenter 4141',
+    desc: 'เว็บพอร์ทัลบริการสารสนเทศสำหรับบุคลากรวัดพระธรรมกาย รองรับบริการหลักครบวงจร ทั้งการขอ/ต่ออายุ Account, คู่มือ Join Domain, FAQ แก้ปัญหา และระบบจัดหาอุปกรณ์ IT ออกแบบให้ใช้งานง่าย พร้อม Real-time Search และ Responsive Layout รองรับทุกอุปกรณ์',
+    cardText: 'PHP 8 (Vanilla) · HTML5 · CSS3 · Vanilla JS · Apache/Nginx',
+    github: 'https://github.com/akarawitx/fdnet-callcenter',
+    live: '#',
+    image: new URL('../assets/project/fdnetService/homepage.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/fdnetService/homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
+      { src: new URL('../assets/project/fdnetService/service1.png', import.meta.url).href, alt: 'หน้าบริการ1' },
+      { src: new URL('../assets/project/fdnetService/service2.png', import.meta.url).href, alt: 'หน้าบริการ2' },
+      { src: new URL('../assets/project/fdnetService/service3.png', import.meta.url).href, alt: 'หน้าบริการ3' },
+      { src: new URL('../assets/project/fdnetService/service4.png', import.meta.url).href, alt: 'หน้าบริการ4' },
+      { src: new URL('../assets/project/fdnetService/procurement1.png', import.meta.url).href, alt: 'หน้าจัดหาอุปกรณ์1' },
+      { src: new URL('../assets/project/fdnetService/procurement2.png', import.meta.url).href, alt: 'หน้าจัดหาอุปกรณ์2' },
+      { src: new URL('../assets/project/fdnetService/procurement3.png', import.meta.url).href, alt: 'หน้าจัดหาอุปกรณ์3' },
+      { src: new URL('../assets/project/fdnetService/procurement4.png', import.meta.url).href, alt: 'หน้าจัดหาอุปกรณ์4' },
+      { src: new URL('../assets/project/fdnetService/network1.png', import.meta.url).href, alt: 'หน้าเครือข่าย' },
+    ],
   },
   {
-    title: 'Example Project',
-    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
-    cardText: 'This headline reflects my personality (16px)  |  WHO AM I',
+    title: 'MafiaSU Arttoy',
+    desc: 'เว็บแอปพลิเคชัน E-Commerce สำหรับซื้อ-ขายของสะสม Art Toy พัฒนาด้วย React และ Go (Gin) พร้อมระบบ Authentication ด้วย Google OAuth + JWT และจัดการฐานข้อมูลผ่าน PostgreSQL บน Docker',
+    cardText: 'React · Go (Gin) · PostgreSQL · Docker · Google OAuth · JWT',
+    github: 'https://github.com/thanachotelu/MafiaSU_arttoy',
+    image: new URL('../assets/project/mafiaToys/homepage.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/mafiaToys/homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
+    ],
   },
   {
-    title: 'Example Project',
-    desc: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
-    cardText: 'OPPORTUNITY (41px)',
+    title: 'SA/BIS — HR Appraisal System',
+    desc: 'โปรเจกต์กลุ่มพัฒนาระบบ HR Appraisal สำหรับองค์กร รองรับ 3 บทบาท ได้แก่ Chief, Manager และ Officer โดย Requirement ได้จากการสัมภาษณ์บริษัทจริง พัฒนาด้วย PHP + PostgreSQL พร้อมแสดงผลด้วย ApexCharts และ Deploy ด้วย Docker',
+    cardText: 'PHP · Bootstrap · PostgreSQL · Docker · ApexCharts',
+    github: 'https://github.com/thanachotelu/mafiaSU',
+    image: new URL('../assets/project/mafiaSU/manager-dashboard.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/mafiaSU/manager-dashboard.png', import.meta.url).href, alt: 'หน้าหลัก' },
+    ],
   },
 ]
 
@@ -92,7 +297,7 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   direction: rtl;
 }
 
-.project-row.reverse > * {
+.project-row.reverse>* {
   direction: ltr;
 }
 
@@ -148,9 +353,9 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
 .preview-card {
   background: #f5f5f5;
   border-radius: 12px;
-  padding: 24px;
+  padding: 8px 8px 0 8px;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: none;
   transform: perspective(800px) rotateY(-5deg);
   transition: transform 0.4s;
   /* leave room for the absolutely positioned subcard */
@@ -168,7 +373,7 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
 .preview-dots {
   display: flex;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .preview-dots span {
@@ -178,9 +383,27 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   background: #ddd;
 }
 
-.preview-dots span:first-child  { background: #f87171; }
-.preview-dots span:nth-child(2) { background: #fbbf24; }
-.preview-dots span:last-child   { background: #4ade80; }
+.preview-dots span:first-child {
+  background: #f87171;
+}
+
+.preview-dots span:nth-child(2) {
+  background: #fbbf24;
+}
+
+.preview-dots span:last-child {
+  background: #4ade80;
+}
+
+.preview-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
+  margin-bottom: 0;
+  display: block;
+}
 
 .preview-lines {
   display: flex;
@@ -195,9 +418,17 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   border-radius: 5px;
 }
 
-.p-line.wide   { width: 90%; }
-.p-line.medium { width: 65%; }
-.p-line.short  { width: 40%; }
+.p-line.wide {
+  width: 90%;
+}
+
+.p-line.medium {
+  width: 65%;
+}
+
+.p-line.short {
+  width: 40%;
+}
 
 .preview-subcard {
   background: white;
@@ -219,6 +450,7 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   .project-row {
     gap: 40px;
   }
+
   .preview-subcard {
     width: 180px;
     right: -12px;
@@ -243,6 +475,7 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   .project-preview {
     order: 2;
   }
+
   .project-text {
     order: 1;
   }
@@ -279,6 +512,172 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   .project-desc {
     font-size: 0.85rem;
     padding: 14px;
+  }
+}
+
+/* ── Image Modal ─────────────────────────────────────── */
+.img-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.img-modal-box {
+  position: relative;
+  width: min(90vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.img-modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.img-modal-viewport {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+  width: 100%;
+  height: min(75vh, 700px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.img-modal-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.1s ease;
+  transform-origin: center center;
+}
+
+.img-modal-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.img-modal-controls button {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.img-modal-controls button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* คลิกรูปได้ */
+.preview-img {
+  cursor: zoom-in;
+}
+
+/* Navigation arrows */
+.img-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.img-modal-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.img-modal-nav--prev {
+  left: -56px;
+}
+
+.img-modal-nav--next {
+  right: -56px;
+}
+
+/* Counter */
+.img-modal-counter {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+/* Thumbnail strip */
+.img-modal-thumbs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.img-modal-thumb {
+  width: 64px;
+  height: 44px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.img-modal-thumb.active {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+.img-modal-thumb:hover {
+  opacity: 0.85;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .img-modal-nav--prev {
+    left: 4px;
+  }
+
+  .img-modal-nav--next {
+    right: 4px;
+  }
+
+  .img-modal-nav {
+    font-size: 2rem;
+    padding: 6px 12px;
   }
 }
 </style>
