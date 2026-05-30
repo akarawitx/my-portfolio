@@ -65,8 +65,7 @@
           @mouseup="onMouseUp" @mouseleave="onMouseUp" @touchstart.prevent="onTouchStart"
           @touchmove.prevent="onTouchMove" @touchend="onTouchEnd">
           <img :src="modalSrc" :alt="modalAlt" class="img-modal-img" :style="{
-            transform: `scale(${zoom}) translate(${panX / zoom}px, ${panY / zoom}px)`,
-            cursor: isDragging ? 'grabbing' : 'grab'
+            transform: `scale(${zoom}) translating ? 'grabbing' : 'grab'
           }" draggable="false" />
         </div>
 
@@ -78,7 +77,8 @@
         </div>
 
         <div class="img-modal-controls">
-          <button @click="zoomOut">－</button>
+          <button @click="zoomOut">－</button>e(${panX / zoom}px, ${panY / zoom}px)`,
+            cursor: isDragg
           <span>{{ Math.round(zoom * 100) }}%</span>
           <button @click="zoomIn">＋</button>
           <button @click="resetZoom">Reset</button>
@@ -240,7 +240,7 @@ const allProjects = [
     desc: 'เว็บพอร์ทัลบริการสารสนเทศสำหรับบุคลากรวัดพระธรรมกาย รองรับบริการหลักครบวงจร ทั้งการขอ/ต่ออายุ Account, คู่มือ Join Domain, FAQ แก้ปัญหา และระบบจัดหาอุปกรณ์ IT ออกแบบให้ใช้งานง่าย พร้อม Real-time Search และ Responsive Layout รองรับทุกอุปกรณ์',
     cardText: 'PHP 8 (Vanilla) · HTML5 · CSS3 · Vanilla JS · Apache/Nginx',
     github: 'https://github.com/akarawitx/fdnet-callcenter',
-    live: '#',
+    live: 'https://fdnet.dhammakaya.network/services-new/',
     image: new URL('../assets/project/fdnetService/homepage.png', import.meta.url).href,
     images: [
       { src: new URL('../assets/project/fdnetService/homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
