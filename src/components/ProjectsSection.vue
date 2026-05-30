@@ -65,7 +65,8 @@
           @mouseup="onMouseUp" @mouseleave="onMouseUp" @touchstart.prevent="onTouchStart"
           @touchmove.prevent="onTouchMove" @touchend="onTouchEnd">
           <img :src="modalSrc" :alt="modalAlt" class="img-modal-img" :style="{
-            transform: `scale(${zoom}) translating ? 'grabbing' : 'grab'
+            transform: `scale(${zoom}) translate(${panX / zoom}px, ${panY / zoom}px)`,
+            cursor: isDragging ? 'grabbing' : 'grab'
           }" draggable="false" />
         </div>
 
@@ -77,8 +78,7 @@
         </div>
 
         <div class="img-modal-controls">
-          <button @click="zoomOut">－</button>e(${panX / zoom}px, ${panY / zoom}px)`,
-            cursor: isDragg
+          <button @click="zoomOut">－</button>
           <span>{{ Math.round(zoom * 100) }}%</span>
           <button @click="zoomIn">＋</button>
           <button @click="resetZoom">Reset</button>
