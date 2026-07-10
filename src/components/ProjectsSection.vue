@@ -40,11 +40,13 @@
         </div>
 
         <div class="project-preview">
-          <div class="preview-card">
-            <div class="preview-dots">
+          <div class="preview-card" :class="{ 'preview-card--mobile': project.device === 'mobile' }">
+            <div v-if="project.device === 'mobile'" class="phone-notch"></div>
+            <div v-else class="preview-dots">
               <span></span><span></span><span></span>
             </div>
-            <img v-if="project.image" :src="project.image" :alt="project.title" class="preview-img"
+            <img v-if="project.image" :src="project.image" :alt="project.title"
+              :class="project.device === 'mobile' ? 'preview-img preview-img--mobile' : 'preview-img'"
               @click="openModal(project.images, 0)" />
             <div v-else class="preview-lines">
               <div class="p-line wide"></div>
@@ -296,6 +298,37 @@ const allProjects = [
     ],
   },
 
+  // SU E-Library
+  {
+    title: 'SU E-Library',
+    desc: 'SU E-Library เป็นโปรเจกต์ที่พัฒนาขึ้นในรายวิชา UX/UI Design โดยได้รับโจทย์ให้ออกแบบระบบที่อำนวยความสะดวกในการใช้งานห้องสมุด จึงเกิดเป็นแนวคิดแอปพลิเคชันสำหรับยืม-คืนหนังสือในห้องสมุด ครอบคลุมฟีเจอร์หลักตั้งแต่การยืม-คืนหนังสือ การค้นหาหนังสือและตำแหน่งจัดวางบนชั้น การตรวจสอบสถานะการยืม-คืน ไปจนถึงระบบสอบถามเจ้าหน้าที่ออนไลน์และแชตบอตสำหรับตอบคำถามเบื้องต้น กระบวนการออกแบบเน้นการทำ User Research จริง โดยสัมภาษณ์ผู้ใช้งานห้องสมุดจริงเพื่อเก็บ Pain Point และนำผลการทดสอบใช้งาน (Usability Testing) มาปรับปรุงการออกแบบซ้ำหลายรอบ (Iterative Design) จนได้ต้นแบบที่ตอบโจทย์การใช้งานจริงมากที่สุด',
+    cardText: 'Figma · UI/UX Design · Prototyping',
+    device: 'mobile',
+    figma: 'https://www.figma.com/design/742ZZ3tAYhLYCNJWHrQZBo/SU-E-LIBRARY?node-id=10-1189&t=89G0N1AFgd8oMLSp-1',
+    drive: 'https://drive.google.com/drive/folders/1WRAuW6nGbm17_Dq37VAkohq7gIAj46uP?usp=sharing',
+    image: new URL('../assets/project/eLibrary/Main1.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/eLibrary/Opening.png', import.meta.url).href, alt: 'หน้าเริ่มต้น' },
+      { src: new URL('../assets/project/eLibrary/Log-in.png', import.meta.url).href, alt: 'หน้าเข้าสู่ระบบ' },
+      { src: new URL('../assets/project/eLibrary/Main1.png', import.meta.url).href, alt: 'หน้าแรก' },
+      { src: new URL('../assets/project/eLibrary/Recommence book.png', import.meta.url).href, alt: 'หน้าหนังสือแนะนํา' },
+      { src: new URL('../assets/project/eLibrary/New book.png', import.meta.url).href, alt: 'หน้าหนังสือใหม่' },
+      { src: new URL('../assets/project/eLibrary/Popular book.png', import.meta.url).href, alt: 'หน้าหนังสือยอดนิยม' },
+      { src: new URL('../assets/project/eLibrary/list.png', import.meta.url).href, alt: 'หน้ารายการหนังสือ' },
+      { src: new URL('../assets/project/eLibrary/following book.png', import.meta.url).href, alt: 'หน้าหนังสือที่ติดตาม' },
+      { src: new URL('../assets/project/eLibrary/Main.png', import.meta.url).href, alt: 'หน้าเมนูต่างๆ' },
+      { src: new URL('../assets/project/eLibrary/profile barcode.png', import.meta.url).href, alt: 'หน้าโปรไฟล์' },
+      { src: new URL('../assets/project/eLibrary/book info 3.png', import.meta.url).href, alt: 'หน้ารายละเอียดหนังสือ' },
+      { src: new URL('../assets/project/eLibrary/ebook (while reading).png', import.meta.url).href, alt: 'หน้าอ่านหนังสือ' },
+      { src: new URL('../assets/project/eLibrary/ebook (ask before exit).png', import.meta.url).href, alt: 'หน้ากดออกอ่านหนังสือ' },
+      { src: new URL('../assets/project/eLibrary/filter 1.png', import.meta.url).href, alt: 'หน้าค้นหาขั้นสูง' },
+      { src: new URL('../assets/project/eLibrary/Error page.png', import.meta.url).href, alt: 'หน้าเกิดข้อผิดพลาด' },
+      { src: new URL('../assets/project/eLibrary/chat 2.png', import.meta.url).href, alt: 'หน้าแชท' },
+      { src: new URL('../assets/project/eLibrary/search (no keyboard).png', import.meta.url).href, alt: 'หน้าค้นหา' },
+      { src: new URL('../assets/project/eLibrary/searching.png', import.meta.url).href, alt: 'หน้าผลค้นหา' },
+    ]
+  },
+
   // MafiaSU Arttoy
   {
     title: 'MafiaSU Arttoy',
@@ -437,6 +470,37 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
 
 .preview-dots span:last-child {
   background: #4ade80;
+}
+
+/* ── Phone mockup variant ── */
+.preview-card--mobile {
+  background: #111827;
+  width: 280px;
+  margin: 0 auto;
+  border-radius: 40px;
+  padding: 18px 12px 14px;
+  transform: none !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 2px solid #1f2937;
+}
+
+.phone-notch {
+  width: 60px;
+  height: 6px;
+  background: #374151;
+  border-radius: 4px;
+  margin: 0 auto 14px;
+}
+
+.preview-img.preview-img--mobile {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 640px;
+  object-fit: contain;
+  object-position: top;
+  border-radius: 26px;
+  background: #ffffff;
 }
 
 .preview-img {
