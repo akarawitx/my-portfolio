@@ -292,7 +292,7 @@ const allProjects = [
       { src: new URL('../assets/project/FunFoods/MyProfile.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้' },
       { src: new URL('../assets/project/FunFoods/MyProfile-post.png', import.meta.url).href, alt: 'หน้าโปรไฟล์เเชร์สูตรอาหาร' },
       { src: new URL('../assets/project/FunFoods/Other-Profile.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้อื่น' },
-      { src: new URL('../assets/project/FunFoods/Other-Profile-post.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้อื่น' },
+      { src: new URL('../assets/project/FunFoods/Other-Profile-Post.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้อื่น' },
     ],
   },
 
