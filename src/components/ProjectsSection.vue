@@ -4,7 +4,12 @@
     <div class="container">
       <div v-for="(project, i) in projects" :key="i" class="project-row" :class="{ reverse: i % 2 !== 0 }">
         <div class="project-text">
-          <span class="featured-label">Project</span>
+          <div class="label-row">
+            <span class="featured-label">Project</span>
+            <span v-if="project.badge" class="project-badge" :class="`project-badge--${project.badge.type}`">
+              {{ project.badge.text }}
+            </span>
+          </div>
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.desc }}</p>
           <div class="project-links">
@@ -221,11 +226,27 @@ function onTouchEnd() {
 
 // ── Projects data ────────────────────────────────────────
 const allProjects = [
+  // PixelFilm
+  {
+    title: 'PixelFilm',
+    desc: 'PixelFilm เป็นโปรเจกต์ส่วนตัวที่ทำขึ้นเพื่อฝึกฝนทักษะ UX/UI Design ออกแบบเป็นเว็บไซต์สำหรับรีวิวและให้คะแนนภาพยนตร์ ครอบคลุมฟีเจอร์หลักตั้งแต่ระบบสมาชิก การเพิ่ม/แก้ไขข้อมูลหนัง การให้คะแนนและเขียนรีวิว ไปจนถึงระบบคอมเมนต์โต้ตอบใต้รีวิว เน้นออกแบบ Layout แบบ Grid Card ให้เบราว์สหนังได้ง่าย และจัดวางข้อมูลสำคัญ (คะแนนเฉลี่ย, จำนวนผู้รีวิว) ให้เห็นชัดตั้งแต่หน้าแรก ปัจจุบันโปรเจกต์ยังอยู่ระหว่างการพัฒนาและปรับปรุงดีไซน์อย่างต่อเนื่อง',
+    cardText: 'Figma · UI/UX Design · Work in Progress',
+    badge: { text: 'Coming Soon', type: 'soon' },
+    figma: 'https://www.figma.com/design/Ah6t41CsStgQ8Vt4IrBWNK/PixelFilm?node-id=60-2&t=aainbDTn8Kj8mwLu-1',
+    image: new URL('../assets/project/pixelFilm/Homepage.png', import.meta.url).href, 
+    images: [
+      { src: new URL('../assets/project/pixelFilm/Homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
+      { src: new URL('../assets/project/pixelFilm/Search.png', import.meta.url).href, alt: 'หน้าแก้ไขภาพ' },
+    ]
+  },
+
+
   // CoOpSystem
   {
     title: 'CoOpSystem',
     desc: 'CoOpSystem คือเว็บแอปพลิเคชันสำหรับบริหารจัดการงานสหกิจศึกษา (Co-op) พัฒนาขึ้นเป็นโครงงานวิจัยของภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร ทำหน้าที่เชื่อมโยงนักศึกษา อาจารย์ สถานประกอบการ และผู้ดูแลระบบ ในกระบวนการฝึกงาน ตั้งแต่การประกาศและสมัครงาน การส่งตรวจแบบฟอร์ม ไปจนถึงการจัดการเอกสาร โดยควบคุมสิทธิ์การใช้งานผ่านระบบ RBAC ที่รองรับผู้ใช้ 6 บทบาท ด้านเทคโนโลยีที่ใช้พัฒนา ฝั่ง Frontend ใช้ Vue 3 ร่วมกับ Vite และ Axios ฝั่ง Backend พัฒนาด้วยภาษา Go และ Gin framework พร้อม JWT สำหรับยืนยันตัวตน จัดเก็บข้อมูลด้วย PostgreSQL และ Deploy ผ่าน Docker บน Vercel (Frontend) และ Google Cloud (Backend)',
     cardText: 'Vue 3 · Go (Gin) · PostgreSQL · Docker · Vercel · Google Cloud',
+    badge: { text: 'Capstone Project', type: 'featured' },
     github: 'https://github.com/aceticacid09/CoOpSystem',
     live: 'https://co-op-system.vercel.app/',
     image: new URL('../assets/project/seniorProject/homepage.png', import.meta.url).href,
@@ -385,7 +406,33 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: block;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 10px;
+}
+
+.project-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  line-height: 1.6;
+}
+
+.project-badge--soon {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.project-badge--featured {
+  background: #fbbf24;
+  color: #1a1408;
 }
 
 .project-title {
