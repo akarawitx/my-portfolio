@@ -233,10 +233,10 @@ const allProjects = [
     cardText: 'Figma · UI/UX Design · Work in Progress',
     badge: { text: 'Coming Soon', type: 'soon' },
     figma: 'https://www.figma.com/design/Ah6t41CsStgQ8Vt4IrBWNK/PixelFilm?node-id=60-2&t=aainbDTn8Kj8mwLu-1',
-    image: new URL('../assets/project/pixelFilm/Homepage.png', import.meta.url).href, 
+    image: new URL('../assets/project/pixelFilms/Homepage.png', import.meta.url).href, 
     images: [
-      { src: new URL('../assets/project/pixelFilm/Homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
-      { src: new URL('../assets/project/pixelFilm/Search.png', import.meta.url).href, alt: 'หน้าแก้ไขภาพ' },
+      { src: new URL('../assets/project/pixelFilms/Homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
+      { src: new URL('../assets/project/pixelFilms/Search.png', import.meta.url).href, alt: 'หน้าแก้ไขภาพ' },
     ]
   },
 
