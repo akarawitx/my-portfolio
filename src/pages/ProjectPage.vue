@@ -6,7 +6,7 @@
       <div class="container">
         <p class="page-label">Portfolio</p>
         <h1 class="page-title">All Projects</h1>
-        <p class="page-sub">A collection of things I've built — from web apps to UI experiments.</p>
+        <p class="page-sub">A collection of things I've built from web apps to UI experiments.</p>
       </div>
     </div>
     <ProjectsSection :preview="false" />

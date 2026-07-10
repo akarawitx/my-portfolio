@@ -4,7 +4,7 @@
     <div class="container">
       <div v-for="(project, i) in projects" :key="i" class="project-row" :class="{ reverse: i % 2 !== 0 }">
         <div class="project-text">
-          <span class="featured-label">Featured Project</span>
+          <span class="featured-label">Project</span>
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-desc">{{ project.desc }}</p>
           <div class="project-links">
@@ -22,6 +22,18 @@
                 <circle cx="12" cy="12" r="10" />
                 <line x1="2" y1="12" x2="22" y2="12" />
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </a>
+            <a v-if="project.figma && project.figma !== '#'" :href="project.figma" target="_blank" class="proj-link"
+              title="Figma">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.5 24a3.5 3.5 0 0 1 0-7H12v3.5A3.5 3.5 0 0 1 8.5 24zM5 13.5A3.5 3.5 0 0 1 8.5 10H12v7H8.5A3.5 3.5 0 0 1 5 13.5zM5 6.5A3.5 3.5 0 0 1 8.5 3H12v7H8.5A3.5 3.5 0 0 1 5 6.5zM12 3h3.5a3.5 3.5 0 1 1 0 7H12V3zM19 13.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+              </svg>
+            </a>
+            <a v-if="project.drive && project.drive !== '#'" :href="project.drive" target="_blank" class="proj-link"
+              title="Google Drive">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.71 3.5L1.15 15l3.5 6h6.56l-6.56-12h.06L7.71 3.5zm5.87 0l6.56 11.5H13.5L7.28 3.5h6.3zM17.79 21l3.5-6-3.35-5.85-6.87 11.85h6.72z" />
               </svg>
             </a>
           </div>
@@ -207,9 +219,10 @@ function onTouchEnd() {
 
 // ── Projects data ────────────────────────────────────────
 const allProjects = [
+  // CoOpSystem
   {
     title: 'CoOpSystem',
-    desc: 'ระบบจัดการสหกิจศึกษาสำหรับบริหารโครงการฝึกงานระหว่างนักศึกษา อาจารย์ สถานประกอบการ และผู้ดูแลระบบ จัดทำเป็น Senior Project สำหรับภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร ระบบใช้ RBAC รองรับ 6 บทบาท ทั้ง Student, Teacher, Supervisor, Company, Personnel และ Admin',
+    desc: 'CoOpSystem คือเว็บแอปพลิเคชันสำหรับบริหารจัดการงานสหกิจศึกษา (Co-op) พัฒนาขึ้นเป็นโครงงานวิจัยของภาควิชาคอมพิวเตอร์ มหาวิทยาลัยศิลปากร ทำหน้าที่เชื่อมโยงนักศึกษา อาจารย์ สถานประกอบการ และผู้ดูแลระบบ ในกระบวนการฝึกงาน ตั้งแต่การประกาศและสมัครงาน การส่งตรวจแบบฟอร์ม ไปจนถึงการจัดการเอกสาร โดยควบคุมสิทธิ์การใช้งานผ่านระบบ RBAC ที่รองรับผู้ใช้ 6 บทบาท ด้านเทคโนโลยีที่ใช้พัฒนา ฝั่ง Frontend ใช้ Vue 3 ร่วมกับ Vite และ Axios ฝั่ง Backend พัฒนาด้วยภาษา Go และ Gin framework พร้อม JWT สำหรับยืนยันตัวตน จัดเก็บข้อมูลด้วย PostgreSQL และ Deploy ผ่าน Docker บน Vercel (Frontend) และ Google Cloud (Backend)',
     cardText: 'Vue 3 · Go (Gin) · PostgreSQL · Docker · Vercel · Google Cloud',
     github: 'https://github.com/aceticacid09/CoOpSystem',
     live: 'https://co-op-system.vercel.app/',
@@ -235,6 +248,8 @@ const allProjects = [
       { src: new URL('../assets/project/seniorProject/teacher6.png', import.meta.url).href, alt: 'ส่วนของอาจารย์' },
     ],
   },
+
+  // FD-net Callcenter 4141
   {
     title: 'FD-net Callcenter 4141',
     desc: 'เว็บพอร์ทัลบริการสารสนเทศสำหรับบุคลากรวัดพระธรรมกาย รองรับบริการหลักครบวงจร ทั้งการขอ/ต่ออายุ Account, คู่มือ Join Domain, FAQ แก้ปัญหา และระบบจัดหาอุปกรณ์ IT ออกแบบให้ใช้งานง่าย พร้อม Real-time Search และ Responsive Layout รองรับทุกอุปกรณ์',
@@ -255,6 +270,33 @@ const allProjects = [
       { src: new URL('../assets/project/fdnetService/network1.png', import.meta.url).href, alt: 'หน้าเครือข่าย' },
     ],
   },
+
+  // FunFoods
+  {
+    title: 'FunFoods',
+    desc: 'FunFoods (Recipe Sharing Web Platform) เป็นโปรเจกต์ที่พัฒนาขึ้นในรายวิชาเตรียมโครงงานวิจัย คณะวิทยาศาสตร์ มหาวิทยาลัยศิลปากร โดยมีเป้าหมายออกแบบแพลตฟอร์มออนไลน์สำหรับแบ่งปันและค้นหาสูตรอาหาร ให้ผู้ใช้สามารถอัปโหลดสูตรอาหารพร้อมรายละเอียดวัตถุดิบและขั้นตอนการทำ ค้นหาสูตรตามหมวดหมู่ วัตถุดิบ และระดับความยาก พร้อมระบบให้คะแนนและรีวิวเพื่อช่วยตัดสินใจเลือกสูตรได้ง่ายขึ้น นอกจากนี้ยังมีระบบจัดการบัญชีผู้ใช้สำหรับบันทึกสูตรโปรดและจัดการโปรไฟล์ส่วนตัว ออกแบบ UI/UX ทั้งหมดผ่าน Figma ผลงานนี้ได้รับรางวัลรองชนะเลิศอันดับ 1 จากการนำเสนอโครงงานต่อคณะกรรมการและอาจารย์ประจำภาควิชาคอมพิวเตอร์',
+    cardText: 'Figma · UI/UX Design · Prototyping',
+    figma: 'https://www.figma.com/design/jgGJnX3DaRVLSufUoPMFNL/FunFoods?node-id=1-325&t=byte1ObwaFxYAnTd-1',
+    drive: 'https://drive.google.com/drive/folders/1XH4nwMkEY740G8jXjLrCddjpTTLKtmOZ?usp=sharing',
+    image: new URL('../assets/project/FunFoods/HomePage-BeforeLogin.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/FunFoods/HomePage-BeforeLogin.png', import.meta.url).href, alt: 'หน้าหลัก' },
+      { src: new URL('../assets/project/FunFoods/HomePage-AfterLogin.png', import.meta.url).href, alt: 'หน้าหลัก-หลังจากเข้าสู่ระบบ' },
+      { src: new URL('../assets/project/FunFoods/Search.png', import.meta.url).href, alt: 'หน้าค้นหาสูตรอาหาร' },
+      { src: new URL('../assets/project/FunFoods/Bookmark.png', import.meta.url).href, alt: 'หน้ารายการสูตรอาหารที่บันทึก' },
+      { src: new URL('../assets/project/FunFoods/Signup.png', import.meta.url).href, alt: 'หน้าสมัครสมาชิก' },
+      { src: new URL('../assets/project/FunFoods/Login.png', import.meta.url).href, alt: 'หน้าเข้าสู่ระบบ' },
+      { src: new URL('../assets/project/FunFoods/Share.png', import.meta.url).href, alt: 'หน้าแชร์สูตรอาหาร' },
+      { src: new URL('../assets/project/FunFoods/AfterShare.png', import.meta.url).href, alt: 'หน้าหลังจากแชร์สูตรอาหาร' },
+      { src: new URL('../assets/project/FunFoods/FoodDetails.png', import.meta.url).href, alt: 'หน้ารายละเอียดสูตรอาหาร' },
+      { src: new URL('../assets/project/FunFoods/MyProfile.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้' },
+      { src: new URL('../assets/project/FunFoods/MyProfile-post.png', import.meta.url).href, alt: 'หน้าโปรไฟล์เเชร์สูตรอาหาร' },
+      { src: new URL('../assets/project/FunFoods/Other-Profile.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้อื่น' },
+      { src: new URL('../assets/project/FunFoods/Other-Profile-post.png', import.meta.url).href, alt: 'หน้าโปรไฟล์ผู้ใช้อื่น' },
+    ],
+  },
+
+  // MafiaSU Arttoy
   {
     title: 'MafiaSU Arttoy',
     desc: 'เว็บแอปพลิเคชัน E-Commerce สำหรับซื้อ-ขายของสะสม Art Toy พัฒนาด้วย React และ Go (Gin) พร้อมระบบ Authentication ด้วย Google OAuth + JWT และจัดการฐานข้อมูลผ่าน PostgreSQL บน Docker',
@@ -265,6 +307,8 @@ const allProjects = [
       { src: new URL('../assets/project/mafiaToys/homepage.png', import.meta.url).href, alt: 'หน้าหลัก' },
     ],
   },
+
+  // SA/BIS — HR Appraisal System
   {
     title: 'SA/BIS — HR Appraisal System',
     desc: 'โปรเจกต์กลุ่มพัฒนาระบบ HR Appraisal สำหรับองค์กร รองรับ 3 บทบาท ได้แก่ Chief, Manager และ Officer โดย Requirement ได้จากการสัมภาษณ์บริษัทจริง พัฒนาด้วย PHP + PostgreSQL พร้อมแสดงผลด้วย ApexCharts และ Deploy ด้วย Docker',
