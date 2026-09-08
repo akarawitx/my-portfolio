@@ -10,8 +10,8 @@
             Hello! I Am <span class="name-highlight">Akarawit Juntarang</span>
           </div>
           <svg class="arrow-svg" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 70 8 C 50 6, 20 10, 8 40" stroke="#7c6a9a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-            <path d="M 4 34 L 8 42 L 15 37" stroke="#7c6a9a" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 70 8 C 50 6, 20 10, 8 40" stroke="#94a3b8" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <path d="M 4 34 L 8 42 L 15 37" stroke="#94a3b8" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
 
@@ -62,12 +62,12 @@
       </div>
 
       <div class="hero-tagline">
-        <p class="designer-label">A Designer who</p>
+        <p class="designer-label">Dream as far as the moon...</p>
         <h1 class="hero-headline">
-          Judges a book<br />
-          by its <span class="cover-text">cover</span>...
+          Even if you<br />
+          never <span class="cover-text">reach it, </span>...
         </h1>
-        <p class="hero-sub">Because if the cover does not impress you what else can?</p>
+        <p class="hero-sub">you'll still touch the clouds.</p>
       </div>
     </div>
   </section>
@@ -87,8 +87,8 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 50% 65% at 28% 52%,
-    rgba(72, 16, 150, 0.6) 0%,
-    rgba(50, 10, 110, 0.2) 50%,
+    rgba(37, 99, 235, 0.18) 0%,
+    rgba(37, 99, 235, 0.08) 50%,
     transparent 72%);
   pointer-events: none;
 }
@@ -113,8 +113,8 @@
 }
 
 .greeting-bubble {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 30px;
   padding: 8px 20px;
   font-size: 0.8rem;
@@ -149,7 +149,7 @@
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 28px 48px rgba(80, 10, 170, 0.5));
+  filter: drop-shadow(0 28px 48px rgba(37, 99, 235, 0.35));
 }
 
 .avatar-fallback {
@@ -157,7 +157,7 @@
   display: none;
   align-items: flex-end;
   justify-content: center;
-  filter: drop-shadow(0 20px 40px rgba(80, 10, 170, 0.55));
+  filter: drop-shadow(0 20px 40px rgba(37, 99, 235, 0.4));
 }
 
 .hero-tagline {

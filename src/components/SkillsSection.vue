@@ -67,7 +67,7 @@ const skills2 = [
 .highlight-underline {
   color: var(--accent);
   text-decoration: underline;
-  text-decoration-color: rgba(168, 85, 247, 0.5);
+  text-decoration-color: rgba(37, 99, 235, 0.5);
   text-underline-offset: 4px;
 }
 
@@ -88,7 +88,7 @@ const skills2 = [
   width: 48px;
   height: 48px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -106,7 +106,7 @@ const skills2 = [
 .skill-icon:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
 }
 
 /* ─── Responsive ─── */

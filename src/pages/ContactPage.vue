@@ -11,7 +11,7 @@
           <h1 class="page-title">Let's work<br /><span class="accent-text">together.</span></h1>
           <p class="contact-bio">
             I'm currently open to new opportunities and collaborations.
-            Whether you have a project in mind, a question, or just want to say hi —
+            Whether you have a project in mind, a question, or just want to say hi
             my inbox is always open.
           </p>
 
@@ -248,7 +248,7 @@ function resetForm() {
 .detail-icon {
   width: 40px;
   height: 40px;
-  background: rgba(168, 85, 247, 0.1);
+  background: rgba(37, 99, 235, 0.1);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -354,7 +354,7 @@ textarea::placeholder {
 input:focus,
 textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .submit-btn {
@@ -434,7 +434,7 @@ textarea:focus {
 .success-icon {
   width: 64px;
   height: 64px;
-  background: rgba(168, 85, 247, 0.12);
+  background: rgba(37, 99, 235, 0.12);
   border: 1px solid var(--accent);
   border-radius: 50%;
   display: flex;

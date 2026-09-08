@@ -448,7 +448,7 @@ const projects = computed(() => props.preview ? allProjects.slice(0, 2) : allPro
   color: var(--text-muted);
   line-height: 1.75;
   margin-bottom: 24px;
-  background: rgba(168, 85, 247, 0.06);
+  background: rgba(37, 99, 235, 0.05);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 20px;

@@ -5,13 +5,10 @@
       <div class="about-content">
         <h2 class="about-headline">Hi, I'm Akarawit.</h2>
         <p class="about-bio">
-          I'm a recent graduate in Information Technology from Silpakorn University,
-          passionate about Web Development and UX/UI design.
+          Creative and detail-oriented IT graduate from Silpakorn University, passionate about Frontend Development and UX/UI Design.
         </p>
         <p class="about-bio">
-          I enjoy building websites that are both functional and user-friendly, and I'm
-          currently seeking opportunities to grow as a Web Developer while continuously
-          improving my skills.
+          Proven ability to design and build end-to-end web projects from concept to deployment as demonstrated through a personal portfolio and hands-on project experience. A strong communicator and collaborative team player who enjoys solving who enjoys solving problems through thoughtful design and clean code.
         </p>
         <a href="/Akarawit_Resume.pdf" download class="resume-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"

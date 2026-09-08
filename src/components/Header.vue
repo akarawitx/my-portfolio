@@ -3,7 +3,7 @@
   <header class="header" :class="{ scrolled: isScrolled }">
     <div class="nav-inner">
       <RouterLink to="/" class="nav-logo">
-        <img src="/src/assets/pink-Photoroom.png" alt="Logo" class="logo-img" />
+        <img src="/src/assets/white-Photoroom.png" alt="Logo" class="logo-img" />
       </RouterLink>
 
       <!-- Desktop links -->
@@ -57,9 +57,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   transition: background 0.3s, backdrop-filter 0.3s;
 }
 .header.scrolled {
-  background: rgba(9, 8, 15, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(37, 99, 235, 0.06);
 }
 .nav-inner {
   max-width: 1100px;
@@ -123,7 +124,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
-  background: rgba(9, 8, 15, 0.97);
+  background: rgba(255, 255, 255, 0.97);
   border-bottom: 1px solid var(--border);
 }
 .mobile-menu.active { max-height: 260px; }
@@ -134,7 +135,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   color: var(--text-muted);
   letter-spacing: 0.04em; text-transform: uppercase;
   display: block; padding: 10px 0;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.08);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.08);
   transition: color 0.2s;
 }
 .mobile-menu a:hover { color: var(--accent); opacity: 1; }

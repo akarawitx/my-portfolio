@@ -18,15 +18,15 @@
 }
 
 :root {
-  --bg-deep:      #09080f;
-  --bg-card:      #110f1e;
-  --bg-card2:     #16132a;
-  --accent:       #a855f7;
-  --accent-soft:  #7c3aed;
-  --accent-glow:  rgba(168, 85, 247, 0.35);
-  --text-primary: #f0eaff;
-  --text-muted:   #8b7da8;
-  --border:       rgba(168, 85, 247, 0.18);
+  --bg-deep:      #eef4fb;
+  --bg-card:      #ffffff;
+  --bg-card2:     #f4f8fd;
+  --accent:       #2563eb;
+  --accent-soft:  #1d4ed8;
+  --accent-glow:  rgba(37, 99, 235, 0.25);
+  --text-primary: #0f172a;
+  --text-muted:   #64748b;
+  --border:       rgba(37, 99, 235, 0.15);
   --font-display: 'Syne', sans-serif;
   --font-body:    'Prompt', sans-serif;
 }

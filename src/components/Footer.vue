@@ -6,7 +6,7 @@
 
       <div class="footer-brand">
         <RouterLink to="/" class="footer-logo">
-          <img src="/src/assets/pink-Photoroom.png" alt="Logo" />
+          <img src="/src/assets/white-Photoroom.png" alt="Logo" />
         </RouterLink>
         <p class="footer-tagline">Designing with purpose.<br />Building with passion.</p>
       </div>
@@ -72,7 +72,7 @@
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 600px; height: 300px;
-  background: radial-gradient(ellipse at center bottom, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center bottom, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(168, 85, 247, 0.08);
+  border-top: 1px solid rgba(37, 99, 235, 0.08);
   padding: 18px 0;
 }
 
