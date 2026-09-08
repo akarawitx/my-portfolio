@@ -272,11 +272,31 @@ const allProjects = [
     ],
   },
 
+  // ComTrain WebCertificate
+  {
+    title: 'ComTrain WebCertificate',
+    desc: 'ระบบออกใบประกาศนียบัตรออนไลน์สำหรับศูนย์อบรมคอมพิวเตอร์ วัดพระธรรมกาย ให้ผู้เข้าอบรมเลือกปี/หลักสูตร/ชื่อตัวเอง แล้วดาวน์โหลดใบประกาศเป็น PNG พร้อม QR Code ตรวจสอบความถูกต้องได้ทันที มี Admin Panel สำหรับจัดการหลักสูตรและรายชื่อผู้เรียนแบบเต็มรูปแบบ จุดที่ท้าทายที่สุดคือการเชื่อมต่อกับระบบรับสมัครเดิมของบริษัทผ่าน JotForm แบบ dual-write เมื่อผู้สมัครกรอกฟอร์ม ข้อมูลจะถูกส่งเข้า Airtable เดิมของบริษัทและฐานข้อมูล Neon ของระบบใหม่พร้อมกันโดยอัตโนมัติผ่าน Webhook โดยไม่กระทบการทำงานเดิมเลย ออกแบบ backend แบบแบ่งชั้น (Controller → Repository → Database) และมีระบบนำเข้าข้อมูลย้อนหลังจาก Airtable รองรับกรณีข้อมูลตกหล่น',
+    cardText: 'PHP 8.2 · PostgreSQL (Neon) · Docker · JotForm API · Airtable API',
+    badge: { text: 'Production', type: 'featured' },
+    github: 'https://github.com/dkcapp/webcertificate',
+    live: 'https://comtrain-webcertificate.onrender.com/',
+    image: new URL('../assets/project/webCertificate/main1.png', import.meta.url).href,
+    images: [
+      { src: new URL('../assets/project/webCertificate/main1.png', import.meta.url).href, alt: 'หน้าดาวน์โหลดใบประกาศ' },
+      { src: new URL('../assets/project/webCertificate/main2.png', import.meta.url).href, alt: 'หน้าเลือกรายชื่อดาวน์โหลดใบสมัคร' },
+      { src: new URL('../assets/project/webCertificate/main3.png', import.meta.url).href, alt: 'หน้าเข้าสู่ระบบผู้ดูเเล' },
+      { src: new URL('../assets/project/webCertificate/main4.png', import.meta.url).href, alt: 'หน้าเเสดงรายชื่อคอร์ดเรียนทั้งหมด' },
+      { src: new URL('../assets/project/webCertificate/main5.png', import.meta.url).href, alt: 'หน้าจัดการรายชื่อผู้เรียน' },
+      { src: new URL('../assets/project/webCertificate/main6.png', import.meta.url).href, alt: 'หน้าดึงข้อมูลผู้เรียน' },
+    ],
+  },
+
   // FD-net Callcenter 4141
   {
     title: 'FD-net Callcenter 4141',
     desc: 'เว็บพอร์ทัลบริการสารสนเทศสำหรับบุคลากรวัดพระธรรมกาย รองรับบริการหลักครบวงจร ทั้งการขอ/ต่ออายุ Account, คู่มือ Join Domain, FAQ แก้ปัญหา และระบบจัดหาอุปกรณ์ IT ออกแบบให้ใช้งานง่าย พร้อม Real-time Search และ Responsive Layout รองรับทุกอุปกรณ์',
     cardText: 'PHP 8 (Vanilla) · HTML5 · CSS3 · Vanilla JS · Apache/Nginx',
+    badge: { text: 'Production', type: 'featured' },
     github: 'https://github.com/akarawitx/fdnet-callcenter',
     live: 'https://fdnet.dhammakaya.network/services-new/',
     image: new URL('../assets/project/fdnetService/homepage.png', import.meta.url).href,
