@@ -1,11 +1,24 @@
 <!-- src/App.vue -->
 <template>
   <div id="app">
-    <RouterView />
+    <Header />
+    <main>
+      <HeroSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+    </main>
+    <Footer />
   </div>
 </template>
 
 <script setup>
+import Header from './components/Header.vue'
+import HeroSection from './components/HeroSection.vue'
+import SkillsSection from './components/SkillsSection.vue'
+import ProjectsSection from './components/ProjectsSection.vue'
+import ContactSection from './components/ContactSection.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <style>
@@ -55,8 +68,10 @@ a:hover { opacity: 0.8; }
 ::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: var(--accent-soft); border-radius: 3px; }
 
-section { padding: 96px 0; }
-
+section { padding: 96px 0; scroll-margin-top: 80px; }
+/* จอกว้าง: เมนูอยู่ด้านข้าง ไม่มีแถบบัง → ไม่ต้องเว้นระยะ
+   (เงื่อนไขต้องตรงกับ Header.vue) */
+@media (min-width: 1200px) and (min-height: 600px) { section { scroll-margin-top: 0; } }
 .container {
   max-width: 1100px;
   margin: 0 auto;

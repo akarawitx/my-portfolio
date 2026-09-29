@@ -1,281 +1,411 @@
 <!-- src/components/HeroSection.vue -->
+<!-- หมายเหตุ: ไฟล์นี้รวม "Hero + ประวัติการศึกษา" ไว้ในกริดเดียวกัน
+     เพื่อให้บัตรค้าง (sticky) อยู่ด้านซ้ายตลอดที่เลื่อนดูสองส่วนนี้ -->
 <template>
   <section class="hero" id="home">
-    <div class="hero-glow"></div>
-
     <div class="container hero-inner">
-      <div class="avatar-side">
-        <div class="bubble-wrap">
-          <div class="greeting-bubble">
-            Hello! I Am <span class="name-highlight">Akarawit Juntarang</span>
-          </div>
-          <svg class="arrow-svg" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 70 8 C 50 6, 20 10, 8 40" stroke="#94a3b8" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-            <path d="M 4 34 L 8 42 L 15 37" stroke="#94a3b8" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+      <!-- ── ซ้าย: บัตรห้อยสายคล้อง (ค้างอยู่กับที่ขณะเลื่อน) ── -->
+      <div class="badge-col">
+        <span class="sparkle s1">✦</span>
+        <span class="sparkle s2">✦</span>
+        <span class="sparkle s3">✦</span>
 
-        <div class="avatar-img-wrap">
-          <img
-            src="/src/assets/avatar.png"
-            alt="Akarawit Juntarang"
-            class="avatar-img"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
-          <div class="avatar-fallback">
-            <svg width="280" height="320" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="248" width="240" height="12" rx="6" fill="#b0b0b0"/>
-              <rect x="28" y="168" width="224" height="84" rx="8" fill="#d8d8d8"/>
-              <rect x="33" y="173" width="214" height="74" rx="5" fill="#111827"/>
-              <circle cx="140" cy="210" r="7" fill="#bbb"/>
-              <rect x="35" y="240" width="80" height="22" rx="11" fill="#d4a97a"/>
-              <rect x="165" y="240" width="80" height="22" rx="11" fill="#d4a97a"/>
-              <rect x="60" y="196" width="160" height="56" rx="16" fill="#1e1640"/>
-              <rect x="114" y="174" width="52" height="30" fill="#d4a97a"/>
-              <ellipse cx="140" cy="138" rx="68" ry="72" fill="#d4a97a"/>
-              <ellipse cx="72" cy="142" rx="10" ry="14" fill="#c9996a"/>
-              <ellipse cx="208" cy="142" rx="10" ry="14" fill="#c9996a"/>
-              <ellipse cx="140" cy="80" rx="68" ry="40" fill="#111"/>
-              <rect x="72" y="78" width="24" height="66" rx="12" fill="#111"/>
-              <rect x="184" y="78" width="24" height="56" rx="12" fill="#111"/>
-              <path d="M72 108 Q60 88 66 70 Q74 54 96 50" stroke="#0a0a0a" stroke-width="4" fill="none" stroke-linecap="round"/>
-              <path d="M140 52 Q160 48 176 58 Q192 68 194 82" stroke="#0a0a0a" stroke-width="4" fill="none" stroke-linecap="round"/>
-              <path d="M90 76 Q140 66 190 76" stroke="#0d0d0d" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <path d="M100 120 Q114 114 128 120" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <path d="M152 120 Q166 114 180 120" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-              <ellipse cx="114" cy="136" rx="13" ry="14" fill="white"/>
-              <ellipse cx="166" cy="136" rx="13" ry="14" fill="white"/>
-              <circle cx="115" cy="137" r="9" fill="#5a3a1a"/>
-              <circle cx="167" cy="137" r="9" fill="#5a3a1a"/>
-              <circle cx="115" cy="137" r="5" fill="#111"/>
-              <circle cx="167" cy="137" r="5" fill="#111"/>
-              <circle cx="118" cy="133" r="3" fill="white"/>
-              <circle cx="170" cy="133" r="3" fill="white"/>
-              <path d="M136 156 Q140 166 144 156" stroke="#b8835a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              <ellipse cx="130" cy="163" rx="5" ry="3" fill="#c9906a" opacity="0.5"/>
-              <ellipse cx="150" cy="163" rx="5" ry="3" fill="#c9906a" opacity="0.5"/>
-              <path d="M120 178 Q140 190 160 178" stroke="#a0663a" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <path d="M122 178 Q131 174 140 178 Q149 174 158 178" stroke="#c07850" stroke-width="2" fill="none" stroke-linecap="round"/>
-            </svg>
+        <div class="lanyard">
+          <span class="strap"></span>
+
+          <div class="badge-swing">
+            <span class="clip"></span>
+
+            <div class="badge">
+              <div class="badge-tab">
+                <span>WEB DEVELOPER</span>
+                <span class="slot"></span>
+              </div>
+
+              <div class="badge-body">
+                <div class="photo">
+                  <img :src="photo" alt="รูปโปรไฟล์ Akarawit Juntarang" />
+                </div>
+
+                <p class="badge-name">Akarawit Juntarang</p>
+                <p class="badge-meta">เทคโนโลยีสารสนเทศ · มหาวิทยาลัยศิลปากร</p>
+
+                <div class="badge-foot">
+                  <div>
+                    <span class="foot-label">สถานะ</span>
+                    <span class="foot-value">เปิดรับงาน</span>
+                  </div>
+                  <span class="barcode" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="hero-tagline">
-        <p class="designer-label">Dream as far as the moon...</p>
-        <h1 class="hero-headline">
-          Even if you<br />
-          never <span class="cover-text">reach it, </span>...
-        </h1>
-        <p class="hero-sub">you'll still touch the clouds.</p>
+      <!-- ── ขวา: เนื้อหาที่เลื่อนผ่านไป ── -->
+      <div class="intro-flow">
+        <div class="hero-copy" id="hero">
+          <div class="status-pill">
+            <span class="dot"></span>
+            กำลังมองหางาน · ตำแหน่ง Web Developer
+          </div>
+
+          <h1 class="hero-title">
+            พร้อมสร้างเว็บไซต์ที่ใช้งานง่าย<br />
+            <span class="mark">และสร้างคุณค่าให้ทีมของคุณ</span>
+          </h1>
+
+          <p class="hero-desc">
+            สวัสดีครับ ผม Akarawit จบการศึกษาด้านเทคโนโลยีสารสนเทศ มหาวิทยาลัยศิลปากร
+            สนใจการพัฒนาเว็บไซต์และการออกแบบ UX/UI
+            ผมชอบเปลี่ยนไอเดียให้กลายเป็นหน้าเว็บที่ใช้งานได้จริงและใช้งานง่าย
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn--primary">
+              ดูผลงาน
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="/Akarawit_Resume.pdf" download class="btn btn--ghost">ดาวน์โหลดเรซูเม่</a>
+          </div>
+
+          <a href="#education" class="scroll-hint">
+            เลื่อนลงเพื่อดูต่อ <span class="scroll-arrow">↓</span>
+          </a>
+        </div>
+
+        <EducationSection />
       </div>
     </div>
   </section>
 </template>
 
+<script setup>
+// รูปโปรไฟล์บนบัตร — ถ้าไฟล์รูปของคุณชื่ออื่น ให้แก้ path ตรงนี้
+import photo from '../assets/akarawit-applyjob.png'
+import EducationSection from './EducationSection.vue'
+</script>
+
 <style scoped>
 .hero {
+  --ink: var(--text-primary);
   position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+  padding: 0;
   overflow: hidden;
-  padding-top: 80px;
-}
-
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 50% 65% at 28% 52%,
-    rgba(37, 99, 235, 0.18) 0%,
-    rgba(37, 99, 235, 0.08) 50%,
-    transparent 72%);
-  pointer-events: none;
+  /* ต้องใช้ clip (ไม่ใช่ hidden) ไม่งั้นบัตรจะไม่ค้าง (sticky) */
+  overflow: clip;
 }
 
 .hero-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 72px;
+  align-items: start;
+  padding-bottom: 64px; /* เว้นที่ให้เงาการ์ด */
+}
+
+/* ───────── Badge column (sticky) ───────── */
+.badge-col {
+  position: sticky;
+  z-index: 2; /* ให้บัตรลอยอยู่เหนือพื้นหลังสีของส่วนการศึกษา */
+  /* จัดบัตรให้อยู่กลางจอแนวตั้ง (ประมาณ) แต่ไม่ชิดขอบบนเกินไป */
+  top: clamp(72px, calc(50vh - 270px), 240px);
+  align-self: start;
   display: flex;
-  align-items: center;
-  gap: 0px;
+  justify-content: center;
+  animation: fadeUp 0.8s ease both;
 }
 
-.avatar-side {
-  position: relative;
-  flex-shrink: 0;
-  animation: fadeUp 0.85s ease both;
-}
-
-.bubble-wrap {
+/* แสงฟ้าจางๆ หลังบัตร — ติดไปกับบัตรตอนเลื่อน */
+.badge-col::before {
+  content: '';
   position: absolute;
-  top: -20px;
-  left: 290px;
-  z-index: 4;
-}
-
-.greeting-bubble {
-  background: rgba(37, 99, 235, 0.06);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-  border-radius: 30px;
-  padding: 8px 20px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  backdrop-filter: blur(10px);
-  line-height: 1.4;
-}
-
-.name-highlight {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.arrow-svg {
-  position: absolute;
-  top: calc(100% - 20px);
-  left: -100px;
-  width: 100px;
-  height: 60px;
-  overflow: visible;
+  inset: -12% -55%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.16) 0%, transparent 68%);
   pointer-events: none;
 }
 
-.avatar-img-wrap {
-  width: 300px;
-  margin-top: -30px;
+.lanyard {
+  position: relative;
+  width: min(300px, 78vw);
 }
 
-.avatar-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 28px 48px rgba(37, 99, 235, 0.35));
+.strap {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 18px);
+  width: 30px;
+  height: 1400px;
+  transform: translateX(-50%);
+  background:
+    repeating-linear-gradient(180deg, transparent 0 14px, rgba(255, 255, 255, 0.22) 14px 16px),
+    var(--accent);
+  border-left: 2.5px solid var(--ink);
+  border-right: 2.5px solid var(--ink);
 }
 
-.avatar-fallback {
-  width: 300px;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
-  filter: drop-shadow(0 20px 40px rgba(37, 99, 235, 0.4));
+.badge-swing {
+  position: relative;
+  transform-origin: 50% 0;
+  animation: swing 6s ease-in-out infinite;
+}
+.lanyard:hover .badge-swing { animation-play-state: paused; }
+
+.clip {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: 46px;
+  height: 34px;
+  transform: translateX(-50%);
+  background: #cbd5e1;
+  border: 2.5px solid var(--ink);
+  border-radius: 8px 8px 4px 4px;
+  z-index: 2;
 }
 
-.hero-tagline {
-  animation: fadeUp 0.85s 0.18s ease both;
+.badge {
+  position: relative;
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
 }
 
-.designer-label {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-
-.hero-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 750;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-  margin-bottom: 14px;
-  color: var(--text-primary);
-}
-
-.cover-text {
-  color: var(--accent);
-}
-
-.hero-sub {
+.badge-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  border-bottom: 2.5px solid var(--ink);
 }
 
+.slot {
+  width: 44px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+.badge-body { padding: 18px 18px 16px; }
+
+.photo {
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(160deg, #dbeafe, #eff6ff);
+  border: 2.5px solid var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+.badge-name {
+  margin-top: 16px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.badge-meta {
+  margin-top: 2px;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.badge-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 2px dashed rgba(15, 23, 42, 0.25);
+}
+.foot-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.foot-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.barcode {
+  width: 76px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 2px, transparent 2px 4px,
+    var(--ink) 4px 5px, transparent 5px 8px,
+    var(--ink) 8px 11px, transparent 11px 13px
+  );
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--accent);
+  animation: twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+}
+.s1 { top: 18%; right: 6%; font-size: 1.6rem; }
+.s2 { bottom: 14%; right: 12%; font-size: 1rem; animation-delay: 1s; }
+.s3 { top: 46%; left: 2%; font-size: 1.2rem; animation-delay: 2s; }
+
+/* ───────── Copy column ───────── */
+.hero-copy {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 96px 0;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+}
+
+.hero-title {
+  margin-top: 22px;
+  font-family: var(--font-body);
+  font-size: clamp(1.7rem, 3.1vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.mark {
+  background: linear-gradient(transparent 62%, rgba(37, 99, 235, 0.24) 62%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hero-desc {
+  max-width: 520px;
+  margin-top: 20px;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+  opacity: 1;
+}
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--ghost { background: #fff; color: var(--ink); }
+
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 36px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.scroll-arrow { display: inline-block; animation: bounce 1.6s ease-in-out infinite; }
+
+/* ───────── Animations ───────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(26px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@keyframes swing {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(2.5deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
 
-/* ─── Tablet (1024px) ─── */
+@media (prefers-reduced-motion: reduce) {
+  .badge-swing, .sparkle, .scroll-arrow { animation: none; }
+}
+
+/* ───────── Responsive ───────── */
 @media (max-width: 1024px) {
-  .bubble-wrap {
-    left: 220px;
-  }
-  .avatar-img-wrap,
-  .avatar-fallback {
-    width: 240px;
-  }
+  .hero-inner { gap: 48px; }
 }
 
-/* ─── Tablet portrait / large mobile (860px) ─── */
-@media (max-width: 860px) {
-  .hero-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    text-align: center;
-    padding-top: 20px;
-  }
-
-  .avatar-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .bubble-wrap {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 12px;
-  }
-
-  .arrow-svg {
-    display: none;
-  }
-
-  .avatar-img-wrap,
-  .avatar-fallback {
-    width: 200px;
-    margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-tagline {
-    padding: 0 8px;
-    width: 100%;
-  }
+/* Header อยู่ด้านบน (กว้าง < 1200px หรือสูง < 600px)
+   → ใช้เลย์เอาต์แบบมือถือ: บัตรอยู่บน ข้อความอยู่ล่าง ไม่ค้างบัตร
+   เงื่อนไขต้องตรงกับ Header.vue เสมอ */
+@media (max-width: 1199px), (max-height: 599px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .badge-col { position: static; padding-top: 150px; }
+  .lanyard { width: min(260px, 70vw); }
+  .hero-copy { min-height: auto; padding: 56px 0 8px; }
+  .hero-desc { max-width: 100%; }
 }
 
-/* ─── Mobile (480px) ─── */
 @media (max-width: 480px) {
-  .hero {
-    padding-top: 70px;
-    min-height: 100svh;
-  }
-
-  .greeting-bubble {
-    font-size: 0.72rem;
-    padding: 7px 14px;
-    white-space: normal;
-    text-align: center;
-    max-width: 260px;
-  }
-
-  .avatar-img-wrap,
-  .avatar-fallback {
-    width: 160px;
-  }
-
-  .hero-sub {
-    font-size: 0.78rem;
-    padding: 0 4px;
-  }
+  .hero-actions .btn { width: 100%; }
 }
 </style>
