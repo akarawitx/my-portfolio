@@ -162,6 +162,20 @@ const allProjects = [
     images: shots('pixelFilms', [['Homepage', 'หน้าหลัก'], ['Search', 'หน้าค้นหา']]),
   },
   {
+    id: 'pixelfilm-code',
+    title: 'PixelFilm',
+    category: 'web',
+    badge: { text: 'กำลังพัฒนา', tone: 'sun' },
+    summary: 'เว็บแอปพลิเคชันรีวิวและให้คะแนนภาพยนตร์ พัฒนาด้วย React + Go + PostgreSQL',
+    desc: 'PixelFilm เป็นโปรเจกต์ส่วนตัวที่ทำขึ้นเพื่อฝึกฝนทักษะพัฒนาเว็บแอปพลิเคชัน พัฒนาด้วย React + Go + PostgreSQL ครอบคลุมฟีเจอร์หลักตั้งแต่ระบบสมาชิก การเพิ่ม/แก้ไขข้อมูลหนัง การให้คะแนนและเขียนรีวิว ไปจนถึงระบบคอมเมนต์โต้ตอบใต้รีวิว ปัจจุบันโปรเจกต์ยังอยู่ระหว่างการพัฒนาและปรับปรุงดีไซน์อย่างต่อเนื่อง',
+    tech: ['React', 'Go (Gin)', 'PostgreSQL', 'Docker'],
+    github: 'https://github.com/akarawitx/movieapp',
+    live: 'https://pixelfilmx.vercel.app/',
+    images: shots('pixelFilmsCode', [
+      ['Home', 'หน้าหลัก'], ['Search', 'หน้าค้นหา'] ,['Detail', 'หน้ารายละเอียดหนัง'], ['About', 'หน้าแก้ไขหนัง'], ['Contact', 'หน้าติดต่อ'], ['Login', 'หน้าเข้าสู่ระบบ'], ['Register', 'หน้าสมัครสมาชิก'],
+    ]),
+  },
+  {
     id: 'coop',
     title: 'CoOpSystem',
     category: 'web',
