@@ -94,6 +94,18 @@ const groups = [
       { name: 'Figma', icon: 'https://img.icons8.com/color/48/figma', desc: 'ออกแบบ UI/UX และทำ prototype' },
     ],
   },
+  {
+    title: 'AI Tools',
+    tone: 'peach',
+    items: [
+      { name: 'Claude', icon: 'https://cdn.simpleicons.org/claude', desc: 'ช่วยคิด วิเคราะห์ และเขียนเอกสาร' },
+      { name: 'Claude Code', icon: 'https://cdn.simpleicons.org/claude', desc: 'ผู้ช่วยเขียนโค้ดผ่าน Terminal' },
+      { name: 'Claude Cowork', icon: 'https://cdn.simpleicons.org/claude', desc: 'มอบหมายงานให้ AI ทำแทนบนเครื่อง' },
+      { name: 'GitHub Copilot', icon: 'https://cdn.simpleicons.org/githubcopilot', desc: 'เติมโค้ดอัตโนมัติใน Editor' },
+      { name: 'ChatGPT', icon: 'https://img.icons8.com/color/48/chatgpt', desc: 'ค้นหาข้อมูลและระดมไอเดีย' },
+      { name: 'Gemini', icon: 'https://cdn.simpleicons.org/googlegemini', desc: 'ค้นคว้าและสรุปข้อมูล' },
+    ],
+  },
 ]
 
 // กันไอคอนพัง: ถ้าลิงก์รูปโหลดไม่ขึ้น (เช่น "RESTful API" ที่ไม่มีโลโก้จริง)
@@ -174,6 +186,7 @@ groups.forEach((g) => g.items.forEach((t) => { if (!t.icon) broken.add(t.name) }
 .group-label.sun  { background: #fef3c7; color: #b45309; }
 .group-label.lav  { background: #ede9fe; color: #6d28d9; }
 .group-label.rose { background: #ffe4e6; color: #be123c; }
+.group-label.peach { background: #ffedd5; color: #c2410c; }
 
 /* ───────── Tool cards ───────── */
 .tool-grid {
@@ -217,6 +230,7 @@ groups.forEach((g) => g.items.forEach((t) => { if (!t.icon) broken.add(t.name) }
 .tool-card.sun  .tool-icon { background: #fef3c7; }
 .tool-card.lav  .tool-icon { background: #ede9fe; }
 .tool-card.rose .tool-icon { background: #ffe4e6; }
+.tool-card.peach .tool-icon { background: #ffedd5; }
 
 .tool-name {
   font-size: 1rem;
