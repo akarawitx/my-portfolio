@@ -100,8 +100,11 @@ const links = [
 .logo-link { display: inline-block; }
 .logo {
   display: block;
-  width: 140px;
-  height: auto;
+  /* ไฟล์โลโก้เป็นสี่เหลี่ยมจัตุรัสที่มีพื้นที่ว่างเยอะ → ครอบเฉพาะลายเซ็น (แบบเดียวกับ Header.vue) */
+  width: 160px;
+  height: calc(160px / 2.4);
+  object-fit: cover;
+  object-position: 50% 49.5%;
   /* แปลงลายเซ็นเป็นสีขาว ให้ชัดบนพื้นดำไม่ว่าไฟล์ต้นฉบับสีอะไร */
   filter: brightness(0) invert(1);
 }

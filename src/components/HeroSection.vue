@@ -18,7 +18,7 @@
 
             <div class="badge">
               <div class="badge-tab">
-                <span>WEB DEVELOPER</span>
+                <span>FRONTEND DEVELOPER</span>
                 <span class="slot"></span>
               </div>
 
@@ -86,7 +86,7 @@
 
 <script setup>
 // รูปโปรไฟล์บนบัตร — ถ้าไฟล์รูปของคุณชื่ออื่น ให้แก้ path ตรงนี้
-import photo from '../assets/akarawit-applyjob.png'
+import photo from '../assets/akarawit-applyjob.webp'
 import EducationSection from './EducationSection.vue'
 </script>
 
@@ -189,6 +189,7 @@ import EducationSection from './EducationSection.vue'
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
+  white-space: nowrap;
   border-bottom: 2.5px solid var(--ink);
 }
 
@@ -362,7 +363,8 @@ import EducationSection from './EducationSection.vue'
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 36px;
+  margin-top: 28px;
+  padding: 8px 0; /* ขยายพื้นที่กดบนมือถือ */
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -403,10 +405,16 @@ import EducationSection from './EducationSection.vue'
   .badge-col { position: static; padding-top: 150px; }
   .lanyard { width: min(260px, 70vw); }
   .hero-copy { min-height: auto; padding: 56px 0 8px; }
-  .hero-desc { max-width: 100%; }
+  .hero-desc { max-width: 640px; }
 }
 
 @media (max-width: 480px) {
   .hero-actions .btn { width: 100%; }
+}
+
+/* จอเล็กมาก: ย่อหัวบัตรให้ "FRONTEND DEVELOPER" อยู่บรรทัดเดียว */
+@media (max-width: 360px) {
+  .badge-tab { gap: 8px; padding: 12px 14px; font-size: 0.68rem; letter-spacing: 0.06em; }
+  .slot { width: 30px; }
 }
 </style>

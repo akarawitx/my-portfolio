@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import suLogo from '../assets/silpakorn-logo.png'
+import suLogo from '../assets/silpakorn-logo.webp'
 
 const education = [
   {

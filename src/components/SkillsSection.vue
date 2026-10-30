@@ -3,10 +3,10 @@
   <section class="skills" id="skills">
     <div class="container">
       <div class="skills-head">
-        <p class="eyebrow">02 · Tools</p>
+        <p class="eyebrow">02 · เครื่องมือ</p>
         <h2 class="skills-title"><span class="mark">เครื่องมือและเทคโนโลยีที่ใช้</span></h2>
         <p class="skills-sub">
-          กำลังมองหาทีมที่ให้ความสำคัญกับการพัฒนาเว็บไซต์ที่เข้าถึงง่ายและใช้งานได้จริง
+          เครื่องมือที่ใช้ทำงานจริง ตั้งแต่ออกแบบหน้าตา เขียนโค้ดฝั่ง Frontend และ Backend ไปจนถึงนำขึ้นใช้งาน
         </p>
       </div>
 
@@ -61,7 +61,7 @@ const groups = [
       { name: 'Vue.js', icon: 'https://img.icons8.com/color/48/vue-js', desc: 'เฟรมเวิร์กหลักที่ใช้พัฒนาเว็บนี้' },
       { name: 'React.js', icon: 'https://img.icons8.com/color/48/react-native', desc: 'สร้าง UI แบบแบ่ง component' },
       { name: 'Bootstrap', icon: 'https://img.icons8.com/color/48/bootstrap', desc: 'จัด layout ด้วย component สำเร็จรูป' },
-      { name: 'Tailwind CSS', icon: 'https://img.icons8.com/color/48/tailwind-css', desc: 'ออกแบบ UI ด้วย utility class' },
+      { name: 'Tailwind CSS', icon: 'https://img.icons8.com/color/48/tailwindcss', desc: 'ออกแบบ UI ด้วย utility class' },
     ],
   },
   {
@@ -90,7 +90,7 @@ const groups = [
       { name: 'GitHub', icon: 'https://img.icons8.com/color/48/github', desc: 'จัดเก็บและทำงานร่วมกันบนโค้ด' },
       { name: 'Docker', icon: 'https://img.icons8.com/color/48/docker', desc: 'รันแอปในสภาพแวดล้อม container' },
       { name: 'Vite', icon: 'https://img.icons8.com/color/48/vite', desc: 'เครื่องมือ build ที่รวดเร็ว' },
-      { name: 'Postman', icon: 'https://img.icons8.com/color/48/postman-api', desc: 'ทดสอบและตรวจสอบ API' },
+      { name: 'Postman', icon: 'https://cdn.simpleicons.org/postman', desc: 'ทดสอบและตรวจสอบ API' },
       { name: 'Figma', icon: 'https://img.icons8.com/color/48/figma', desc: 'ออกแบบ UI/UX และทำ prototype' },
     ],
   },

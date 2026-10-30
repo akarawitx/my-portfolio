@@ -144,7 +144,7 @@ src/
 ## 🛠️ วิธีแก้ไขเนื้อหา
 
 ### เพิ่มหรือแก้ไขโปรเจกต์
-1. วางภาพหน้าจอ `.png` ในโฟลเดอร์ `src/assets/project/<ชื่อโฟลเดอร์>/`
+1. วางภาพหน้าจอ `.webp` ในโฟลเดอร์ `src/assets/project/<ชื่อโฟลเดอร์>/`
 2. เพิ่ม object ใน `allProjects` ของ `ProjectsSection.vue`
 
 ```js
@@ -158,7 +158,7 @@ src/
   tech: ['Vue 3', 'Go (Gin)'],
   github: 'https://...',                 // ลิงก์ที่ไม่มีให้ลบบรรทัดนั้นออก (github, live, figma, drive)
   images: shots('ชื่อโฟลเดอร์', [
-    ['ชื่อไฟล์ไม่ต้องมี .png', 'คำบรรยายภาพ'],
+    ['ชื่อไฟล์ไม่ต้องมี .webp', 'คำบรรยายภาพ'],
   ]),
 }
 ```
@@ -173,7 +173,7 @@ src/
 - Footer: `--f-bg` ในบล็อก `.footer` (`Footer.vue`)
 
 ### เปลี่ยนรูปโปรไฟล์บนบัตรและเมนู
-แทนที่ไฟล์ `src/assets/akarawit-applyjob.png` (ใช้ทั้งบัตรพนักงาน เมนูด้านข้าง และส่วนอื่นที่ import ไฟล์นี้)
+แทนที่ไฟล์ `src/assets/akarawit-applyjob.webp` (ใช้ทั้งบัตรพนักงาน เมนูด้านข้าง และส่วนอื่นที่ import ไฟล์นี้)
 
 ---
 
@@ -203,4 +203,4 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 - **เปลี่ยนจากหลายหน้าเป็นหน้าเดียว** ลบ Vue Router, `pages/` และ `router/` ออก ถ้าใน `package.json` ยังมี `vue-router` อยู่ สั่ง `npm uninstall vue-router` ได้
 - **`AboutSection.vue`** ยังอยู่ในโฟลเดอร์แต่ไม่ได้ถูกเรียกใช้ในหน้า ถ้าไม่ต้องการแล้วสามารถลบไฟล์ได้
 - **ลบ `console.log` ค่าของ EmailJS ออกแล้ว** จาก `ContactSection.vue`
-- **ภาพผลงานและ `Notification.png`** ในโฟลเดอร์ `eLibrary` ยังไม่ได้ถูกใช้ในแกลเลอรี ถ้าต้องการแสดงให้เพิ่มลงในรายการ `shots('eLibrary', [...])`
+- **ภาพผลงานและ `Notification.webp`** ในโฟลเดอร์ `eLibrary` ยังไม่ได้ถูกใช้ในแกลเลอรี ถ้าต้องการแสดงให้เพิ่มลงในรายการ `shots('eLibrary', [...])`

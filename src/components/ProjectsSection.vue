@@ -142,9 +142,9 @@ const props = defineProps({
 })
 
 // ── รูปภาพ: ดึงทุกไฟล์ในโฟลเดอร์ project (รองรับชื่อไฟล์ที่มีเว้นวรรค) ──
-const files = import.meta.glob('../assets/project/**/*.png', { eager: true, import: 'default' })
+const files = import.meta.glob('../assets/project/**/*.webp', { eager: true, import: 'default' })
 const shots = (dir, list) =>
-  list.map(([name, alt]) => ({ src: files[`../assets/project/${dir}/${name}.png`], alt }))
+  list.map(([name, alt]) => ({ src: files[`../assets/project/${dir}/${name}.webp`], alt }))
 
 // ── ข้อมูลโปรเจกต์ ──
 const catLabel = { web: 'เว็บแอปพลิเคชัน', design: 'ออกแบบ UX/UI' }
@@ -696,6 +696,7 @@ onUnmounted(() => {
   grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
   width: min(1120px, 100%);
   height: min(86vh, 760px);
+  height: min(86dvh, 760px); /* มือถือ: ไม่นับแถบ URL ของเบราว์เซอร์ */
   overflow: hidden;
   background: #fff;
   border: 2.5px solid var(--ink);
@@ -889,13 +890,30 @@ onUnmounted(() => {
 .link-btn:focus-visible { outline: 3px solid #60a5fa; outline-offset: 2px; }
 
 /* ───────── Responsive ───────── */
-@media (max-width: 900px) {
+@media (max-width: 900px) and (min-height: 501px) {
   .dialog {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(0, 52%) minmax(0, 1fr);
     height: min(92vh, 900px);
+    height: min(92dvh, 900px);
   }
   .modal { padding: 12px; }
+}
+
+/* มือถือแนวนอน: จอเตี้ย → วางภาพกับรายละเอียดคู่กัน และซ่อนแถบภาพย่อ */
+@media (max-height: 500px) {
+  .modal { padding: 8px; }
+  .dialog {
+    grid-template-columns: minmax(0, 1.3fr) minmax(240px, 1fr);
+    height: calc(100vh - 16px);
+    height: calc(100dvh - 16px);
+    border-radius: 16px;
+    box-shadow: 4px 4px 0 #2563eb;
+  }
+  .thumbs, .caption { display: none; }
+  .tools { justify-content: center; padding: 6px 10px; }
+  .info { padding: 18px 18px; }
+  .info-title { font-size: 1.25rem; }
 }
 
 @media (max-width: 640px) {

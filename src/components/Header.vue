@@ -63,7 +63,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import logo from '../assets/white-Photoroom.png'
-import photo from '../assets/akarawit-applyjob.png'
+import photo from '../assets/akarawit-applyjob.webp'
 
 const resumeUrl = '/Akarawit_Resume.pdf'
 
