@@ -33,7 +33,7 @@
                 <div class="badge-foot">
                   <div>
                     <span class="foot-label">สถานะ</span>
-                    <span class="foot-value">เปิดรับงาน</span>
+                    <span class="foot-value">ปิดรับงาน</span>
                   </div>
                   <span class="barcode" aria-hidden="true"></span>
                 </div>
@@ -48,7 +48,7 @@
         <div class="hero-copy" id="hero">
           <div class="status-pill">
             <span class="dot"></span>
-            กำลังมองหางาน · ตำแหน่ง Web Developer
+            ปัจจุบันทำงานตำแหน่ง Frontend Developer
           </div>
 
           <h1 class="hero-title">
@@ -303,8 +303,9 @@ import EducationSection from './EducationSection.vue'
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+  /* สีเทา = ออฟไลน์ (ได้งานแล้ว) — ถ้ากลับมาเปิดรับงานให้เปลี่ยนเป็น #22c55e / rgba(34, 197, 94, 0.2) */
+  background: #94a3b8;
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.25);
 }
 
 .hero-title {
